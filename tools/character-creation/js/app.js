@@ -79,29 +79,61 @@
 			$rootScope.$broadcast('reset' + (phase ? '-'+phase : ''));
 		};
 
-		$scope.updateRolls = function() {
-			var c = $scope.character.characteristics;
-			c.effort = 5 * c.strength;
-			c.stamina = 5 * c.constitution;
-			c.damageBonus = parseInt(c.strength) + parseInt(c.size);
-			c.idea = 5 * c.intelligence;
-			c.luck = 5 * c.power;
-			c.agility = 5 * c.dexterity;
-			c.charisma = 5 * c.appearance;
+		$scope.phases = ['general-infos', 'civil-status', 'characteristics', 'personality-and-profession', 'skills'];
+		$scope.currentPhase = 0;
+		$scope.isCurrentPhase = function(phase) {
+			return $scope.phases.indexOf(phase) <= $scope.currentPhase;
 		};
 
-		$scope.$watch('character', function() {
-			console.log(Date.now(), $scope.character)
-			$scope.updateRolls();
-		}, true);
+		$scope.invalidate = function(phase) {
+			var i = $scope.phases.indexOf(phase);
+			if($scope.currentPhase > i) {
+				$scope.currentPhase = i;
+				$scope.phases.forEach(function(p, j) {
+					if(j > i) $scope.reset(p);
+				});
+			}
+		}
 
-		$scope.$watch('character.civilStatus.race', function() {
-			$scope.reset('characteristics');
+		$scope.toggle = function(phase, toggle) {
+			return toggle ? $scope.validate(phase) : $scope.invalidate(phase);
+		}
+
+		$scope.validate = function(phase) {
+			var i = $scope.phases.indexOf(phase);
+			if($scope.currentPhase == i ) $scope.currentPhase += 1;
+			$scope.phases
+				.forEach(function(p, j) {
+					if(j >= $scope.currentPhase) $rootScope.$broadcast('check-'+p);
+				});
+		}
+
+	});
+
+	CC.controller('GeneralInfosCtrl', function($scope) {
+
+		$scope.$watch('character.generalInfos.playerName', function(newVal) {
+			$scope.toggle('general-infos', newVal);
 		}, true);
 
 	});
 
 	CC.controller('CharacterInfosCtrl', function($scope) {
+
+		$scope.$watch('character.civilStatus', function(civilStatus) {
+			$scope.toggle(
+				'civil-status',
+				civilStatus.gender && civilStatus.name && civilStatus.race && civilStatus.handedness
+			);
+		}, true);
+
+		$scope.$on('check-civil-status', function() {
+			var civilStatus = $scope.character.civilStatus;
+			$scope.toggle(
+				'civil-status',
+				civilStatus.gender && civilStatus.name && civilStatus.race && civilStatus.handedness
+			);
+		});
 
 		$scope.races = [
 			{ 
@@ -141,10 +173,18 @@
 			} else return 'partials/race-default.html';
 		};
 
+		$scope.$watch('character.civilStatus.race', function() {
+			$scope.reset('characteristics');
+		}, true);
+
 	});
 
 
 	CC.controller('characteristicsCtrl', function($scope) {
+
+		$scope.$watch('pool', function(newVal) {
+			$scope.toggle('characteristics', !newVal);
+		}, true);
 
 		$scope.$on('reset-characteristics', function() {
 			$scope.pool = $scope.defaultPool;
@@ -188,9 +228,37 @@
 			return $scope.pool - $scope.costs[charac] >= 0;
 		};
 
+		$scope.updateRolls = function() {
+			var c = $scope.character.characteristics;
+			c.effort = 5 * c.strength;
+			c.stamina = 5 * c.constitution;
+			c.damageBonus = parseInt(c.strength) + parseInt(c.size);
+			c.idea = 5 * c.intelligence;
+			c.luck = 5 * c.power;
+			c.agility = 5 * c.dexterity;
+			c.charisma = 5 * c.appearance;
+		};
+
+			
+		$scope.$watch('character.characteristics', function() {
+			$scope.updateRolls();
+		}, true);
+
 	});
 
 	CC.controller('PersonalityAndProfessionCtrl', function($scope) {
+
+		$scope.$on('reset-personality-and-profession', function() {
+			var character = $scope.character;
+			character.profession = {};
+			character.personality = {};
+		});
+
+		$scope.$watch('character', function(newVal) {
+			var character = $scope.character;
+			$scope.toggle('personality-and-profession', character.profession.name && character.personality.description);
+		}, true);
+
 		$scope.personalities = [
 			{
 				description: "Aucun problème ne peut résister à la force de vos muscles.",
@@ -217,6 +285,7 @@
 			$scope.reset();
 		});
 
+		$scope.prevSkills = {};
 		$scope.combatSkill = [];
 		$scope.groupedSkills = [];
 		$scope.characterSkills = [];
@@ -257,11 +326,29 @@
 		};
 
 		$scope.getMax = function(skill) {
-			
+			return Math.min(
+				parseInt($scope.character.skills[skill]) + $scope.pool, 
+				75
+			);
 		};
 
-		$scope.getMin = function(skill) {
-			
+		$scope.getMin = function(skillId) {
+
+			var skill = $scope.getSkill(skillId),
+				charPersoSkills = $scope.character.personality.skills,
+				min = $scope.interpretBaseSkill(skill.base);
+
+			if(skillId in charPersoSkills) min += 20;
+
+			return min;
+		};
+
+		$scope.change = function(skill) {
+			if(!angular.isNumber($scope.prevSkills[skill])) {
+				$scope.prevSkills[skill] = parseInt($scope.character.skills[skill]);
+			}
+			$scope.pool += (parseInt($scope.prevSkills[skill]) - parseInt($scope.character.skills[skill]));
+			$scope.prevSkills[skill] = parseInt($scope.character.skills[skill]);
 		};
 
 		$scope.reset = function() {
@@ -279,9 +366,7 @@
 			$scope.characterSkills
 				.forEach(function(skillId) {
 					if(skillId === 'combat') return;
-					var skill = $scope.getSkill(skillId);
-					$scope.character.skills[skillId] = $scope.interpretBaseSkill(skill.base);
-					if(skillId in charPersoSkills) $scope.character.skills[skillId] += 20;
+					$scope.character.skills[skillId] = $scope.getMin(skillId);
 				});
 
 			$scope.updateGroupedSkills();

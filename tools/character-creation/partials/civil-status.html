@@ -1,4 +1,4 @@
-<fieldset ng-controller="CharacterInfosCtrl">
+<fieldset ng-disabled="!isCurrentPhase('civil-status')" ng-controller="CharacterInfosCtrl">
   <legend>Personnage</legend>
 
   <div class="control-group">
@@ -12,7 +12,7 @@
   <div class="control-group">
     <label class="control-label">* Genre</label>
     <div class="controls">
-      <select ng-model="character.civilStatus.genre">
+      <select ng-model="character.civilStatus.gender">
         <option value="male">Homme</option>
         <option value="female">Femme</option>
       </select>
