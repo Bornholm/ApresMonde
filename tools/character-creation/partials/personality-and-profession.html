@@ -1,0 +1,28 @@
+<fieldset ng-controller="PersonalityAndProfessionCtrl">
+	<legend>Personnalité & Profession</legend>
+
+	<div class="row-fluid">
+		<div class="control-group span6">
+	      <label class="control-label">* Quelle phrase définirait le mieux votre personnage ?</label>
+	      <div class="controls">
+	        <select ng-model="character.personality" ng-change="reset('skills')" ng-options="p.description for p in personalities"></select>
+	      </div>
+	    </div>
+	    <div class="span6">
+	    	<p>La <b>personnalité</b> de votre personnage permet de définir un premier ensemble de <b>compétences</b> qui lui seront accessibles au début du jeu</p>
+	    </div>
+	</div>
+
+	<div class="row-fluid">
+		<div class="control-group span6">
+	      <label class="control-label">* Quelle profession exerce votre personnage ?</label>
+	      <div class="controls">
+	        <select ng-model="character.profession" ng-change="reset('skills')" ng-options="prof.name for prof in character.civilStatus.race.professions"></select>
+	      </div>
+	    </div>
+	    <div class="span6">
+	    	<p>La <b>profession</b> de votre personnage permet de définir le second ensemble de <b>compétences</b> qui lui seront accessibles au début du jeu</p>
+	    </div>
+	</div>
+
+</fieldset>

@@ -1,0 +1,18 @@
+<fieldset ng-controller="SkillsCtrl">
+	<legend>Compétences</legend>
+	<div class="control-group">
+		<label class="control-label">Points à attribuer</label>
+		<div class="controls">
+			<input type="text" ng-model="pool" readonly />
+		</div>
+	</div>
+	<div class="row-fluid" ng-repeat="group in groupedSkills">
+		<div class="control-group span6" ng-repeat='skill in group'>
+			<label class="control-label">{{skill|translate:'skills'}}</label>
+			<div class="controls">
+				<input type="range" ng-model="character.skills[skill]" min="{{getMin(skill)}}" max="{{getMax(skill)}}" />
+				<span> {{character.skills[skill]}}%</span>
+			</div>
+		</div>
+	</div>
+</fieldset>

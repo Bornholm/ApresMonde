@@ -1,0 +1,230 @@
+{
+	"communication": [
+		{
+			"name": "bargain",
+			"base": "5"
+		},
+		{
+			"name": "command",
+			"base": "5"
+		},
+		{
+			"name": "disguise",
+			"base": "1"
+		},
+		{
+			"name": "etiquette",
+			"base": "5"
+		},
+		{
+			"name": "fast-talk",
+			"base": "5"
+		},
+		{
+			"name": "language-own",
+			"base": "intelligence*5"
+		},
+		{
+			"name": "language-other",
+			"base": "0"
+		},
+		{
+			"name": "perform",
+			"base": "5"
+		},
+		{
+			"name": "persuade",
+			"base": "15"
+		},
+		{
+			"name": "status",
+			"base": "15"
+		},
+		{
+			"name": "teach",
+			"base": "10"
+		}
+	],
+	"manipulation": [
+		{
+			"name": "art",
+			"base": "5"
+		},
+		{
+			"name": "craft",
+			"base": "5"
+		},
+		{
+			"name": "demolition",
+			"base": "1"
+		},
+		{
+			"name": "fine-manipulation",
+			"base": "5"
+		},
+		{
+			"name": "repair",
+			"base": "15"
+		},
+		{
+			"name": "sleight-of-hand",
+			"base": "5"
+		}
+	],
+	"mental": [
+		{
+			"name": "appraise",
+			"base": "15"
+		},
+		{
+			"name": "first-aid",
+			"base": "30"
+		},
+		{
+			"name": "gaming",
+			"base": "intelligence"
+		},
+		{
+			"name": "knowledge",
+			"base": "1"
+		},
+		{
+			"name": "medicine",
+			"base": "1"
+		},
+		{
+			"name": "science",
+			"base": "1"
+		},
+		{
+			"name": "strategy",
+			"base": "1"
+		}
+	],
+	"perception": [
+		{
+			"name": "insight",
+			"base": "5"
+		},
+		{
+			"name": "listen",
+			"base": "25"
+		},
+		{
+			"name": "navigate",
+			"base": "10"
+		},
+		{
+			"name": "research",
+			"base": "25"
+		},
+		{
+			"name": "sense",
+			"base": "10"
+		},
+		{
+			"name": "spot",
+			"base": "25"
+		},
+		{
+			"name": "track",
+			"base": "10"
+		}
+	],
+	"physical": [
+		{
+			"name": "climb",
+			"base": "40"
+		},
+		{
+			"name": "dodge",
+			"base": "dexterity*2"
+		},
+		{
+			"name": "hide",
+			"base": "10"
+		},
+		{
+			"name": "jump",
+			"base": "25"
+		},
+		{
+			"name": "stealth",
+			"base": "10"
+		},
+		{
+			"name": "swim",
+			"base": "25"
+		},
+		{
+			"name": "throw",
+			"base": "25"
+		}
+	],
+	"combat": [
+		{
+			"name": "martial-arts",
+			"base": "1"
+		},
+		{
+			"name": "brawl",
+			"base": "25"
+		},
+		{
+			"name": "weapon-axe",
+			"base": "15"
+		},
+		{
+			"name": "weapon-hand",
+			"base": "25"
+		},
+		{
+			"name": "weapon-dagger",
+			"base": "25"
+		},
+		{
+			"name": "weapon-flail",
+			"base": "10"
+		},
+		{
+			"name": "weapon-polearm",
+			"base": "15"
+		},
+		{
+			"name": "weapon-hammer",
+			"base": "25"
+		},
+		{
+			"name": "weapon-sword",
+			"base": "15"
+		},
+		{
+			"name": "weapon-spear",
+			"base": "15"
+		},
+		{
+			"name": "weapon-mace",
+			"base": "25"
+		},
+		{
+			"name": "weapon-improvised",
+			"base": "5"
+		},
+		{
+			"name": "weapon-staff",
+			"base": "15"
+		},
+		{
+			"name": "weapon-crossbow",
+			"base": "15"
+		},
+		{
+			"name": "weapon-bow",
+			"base": "5"
+		},
+		{
+			"name": "weapon-missile",
+			"base": "10"
+		}
+	]
+}

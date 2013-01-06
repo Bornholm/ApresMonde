@@ -1,0 +1,153 @@
+ <fieldset ng-controller="characteristicsCtrl">
+
+  <legend>Caractéristiques</legend>
+
+  <div class="row-fluid">
+
+    <div class="span6 justify">
+          <p>Vous pouvez attribuer 24 points de réserve <b>(PR)</b> à vos caractéristiques principales.</p>
+          <p>Chaque point ajouté aux catactéristiques <b>Force, Constitution, Taille et Apparence coûte 1 PR</b>.</p>
+          <p>Chaque point ajouté aux catactéristiques <b>Intelligence et Dextérité coûte 3 PR</b>.</p>
+          <p>
+            Chaque caractéristique débute sur une base de 10 points. Vous pouvez réattribuer ces points sur les autres caractéristiques
+            dans la limite où <b>aucune caractéristique ne peut descendre en dessous de 3 points et ne peut être supérieure à 21 points</b>
+          </p>
+    </div>
+
+    <div class="span6 justify">
+      <p>Les <b>Jets</b> sont des caractéristiques secondaires automatiquement calculées à partir de vos caractéristiques principales.</p>
+      <p>Ils sont utilisés en jeu lorsque des actions demandent de tester l'habileté de votre personnage et qu'aucune <b>compétence</b> existante ne correspond à la situation.</p>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+    <div class="control-group span6">
+
+      <label class="control-label">Points de réserve</label>
+      <div class="controls">
+        <input type="text" readonly ng-model="pool"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+
+    <div class="control-group span6">
+      <label class="control-label">Force</label>
+      <div class="controls">
+        <input type="range" ng-change="change('strength')" ng-model="character.characteristics.strength" min="{{minPoints}}" max="{{getMax('strength')}}" />
+        <span> {{character.characteristics.strength}}</span>
+      </div>
+    </div>
+
+    <div class="control-group span6">
+      <label class="control-label">Jet d'Effort</label>
+      <div class="controls">
+        <input type="text" ng-model="character.characteristics.effort" readonly/>
+        <span>%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+  
+    <div class="control-group span6">
+      <label class="control-label">Constitution</label>
+      <div class="controls">
+        <input type="range" ng-change="change('constitution')" ng-model="character.characteristics.constitution" min="{{minPoints}}" max="{{getMax('constitution')}}"/>
+        <span> {{character.characteristics.constitution}}</span>
+      </div>
+    </div>
+
+    <div class="control-group span6">
+      <label class="control-label">Jet d'Endurance</label>
+      <div class="controls">
+        <input type="text" ng-model="character.characteristics.stamina" readonly/>
+        <span>%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+  
+    <div class="control-group span6">
+      <label class="control-label">Taille</label>
+      <div class="controls">
+        <input type="range" ng-change="change('size')" ng-model="character.characteristics.size" min="{{minPoints}}" max="{{getMax('size')}}"/>
+        <span> {{character.characteristics.size}}</span>
+      </div>
+    </div>
+
+    <div class="control-group span6">
+      <label class="control-label">Bonus aux dégâts</label>
+      <div class="controls">
+        <input type="text" ng-model="character.characteristics.damageBonus" readonly/>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+  
+    <div class="control-group span6">
+      <label class="control-label">Intelligence</label>
+      <div class="controls">
+        <input type="range" ng-change="change('intelligence')" ng-model="character.characteristics.intelligence" min="{{minPoints}}" max="{{getMax('intelligence')}}"/>
+        <span> {{character.characteristics.intelligence}}</span>
+      </div>
+    </div>
+
+    <div class="control-group span6">
+      <label class="control-label">Jet d'Idée</label>
+      <div class="controls">
+        <input type="text" ng-model="character.characteristics.idea" readonly/>
+        <span>%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+  
+    <div class="control-group span6">
+      <label class="control-label">Dexterité</label>
+      <div class="controls">
+        <input type="range" ng-change="change('dexterity')" ng-model="character.characteristics.dexterity" min="{{minPoints}}" max="{{getMax('dexterity')}}"/>
+        <span> {{character.characteristics.dexterity}}</span>
+      </div>
+    </div>
+
+    <div class="control-group span6">
+      <label class="control-label">Jet d'Agilité</label>
+      <div class="controls">
+        <input type="text" ng-model="character.characteristics.agility" readonly/>
+        <span>%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+  
+    <div class="control-group span6">
+      <label class="control-label">Apparence</label>
+      <div class="controls">
+        <input type="range" ng-change="change('appearance')" ng-model="character.characteristics.appearance" min="{{minPoints}}" max="{{getMax('appearance')}}"/>
+        <span> {{character.characteristics.appearance}}</span>
+      </div>
+    </div>
+
+    <div class="control-group span6">
+      <label class="control-label">Jet de Charisme</label>
+      <div class="controls">
+        <input type="text" ng-model="character.characteristics.charisma" readonly/>
+        <span>%</span>
+      </div>
+    </div>
+
+  </div>
+
+</fieldset>
