@@ -3,10 +3,6 @@ L'AprèsMonde
 
 Un jeu de rôle papier dans un univers post-apocalyptique/fantastique.
 
-DevLog
-------
-- 6 Jan 2013 : Début de création d'un formulaire Web pour faciliter la création de personnage.
-
 Simulacres
 ----------
 Vous trouverez dans ce dépôt une copie des règles du système de jeu généraliste Simulacres.
