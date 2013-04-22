@@ -79,7 +79,7 @@
 			$rootScope.$broadcast('reset' + (phase ? '-'+phase : ''));
 		};
 
-		$scope.phases = ['general-infos', 'civil-status', 'characteristics', 'personality-and-profession', 'skills'];
+		$scope.phases = ['general-infos', 'civil-status', 'characteristics', 'personality-and-profession', 'skills', 'weapon-skills'];
 		$scope.currentPhase = 0;
 		$scope.isCurrentPhase = function(phase) {
 			return $scope.phases.indexOf(phase) <= $scope.currentPhase;
@@ -374,6 +374,10 @@
 			$scope.pool = $scope.defaultPool;
 
 		};
+
+	});
+
+	CC.controller('WeaponSkillsCtrl', function($scope) {
 
 	});
 

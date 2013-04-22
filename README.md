@@ -1,11 +1,17 @@
 L'AprèsMonde
 ============
 
-Un jeu de rôle papier basé plus ou moins librement sur les règles du [Basic Role Playing](https://en.wikipedia.org/wiki/Basic_Role-Playing) de Chaosium, dans un univers 'original' post-apocalyptique/fantastique.
+Un jeu de rôle papier dans un univers post-apocalyptique/fantastique.
 
 DevLog
 ------
 - 6 Jan 2013 : Début de création d'un formulaire Web pour faciliter la création de personnage.
+
+Simulacres
+----------
+Vous trouverez dans ce dépôt une copie des règles du système de jeu généraliste Simulacres.
+Simulacres est un jeu de rôle généraliste, contenant tout ce qui est nécessaire pour faire jouer dans n’importe quel univers.
+Les règles sont en libres de diffusion, mais restent sous le copyright et la propriété de Pierre Rosenthal.
 
 License
 -------
